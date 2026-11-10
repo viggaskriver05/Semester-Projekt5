@@ -1980,22 +1980,15 @@ MonoBehaviour:
   initialDelay: 2
   nextClips:
   - clip: {fileID: 11400000, guid: 464c777261d6f7b42aa0036bfbecfa65, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: e7c35a0074af22448b2a18318041dbae, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: 31de6c62ad784d5458c56557a007d7e9, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: fc0d2320433e1064b9094cea96cdfd71, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: 494b9c4fbe3026f4cbee9e68c4183e5f, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: 6e3c56cf7e50f2a4e94bbd7a60fbdc61, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: 1fb50c4e321758a43b6397939323aae9, type: 2}
-    delay: 0
   - clip: {fileID: 11400000, guid: c736348b9c328a743b33c14cf48a4045, type: 2}
-    delay: 0
   playOnce: 1
+  nextLineAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!65 &876251192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3046,7 +3039,7 @@ MonoBehaviour:
     m_InputActionReference: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: {x: 0, y: 0}
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_HeadTransform: {fileID: 157169553}
   m_LeftControllerTransform: {fileID: 0}
   m_RightControllerTransform: {fileID: 0}
@@ -3137,7 +3130,7 @@ GameObject:
   - component: {fileID: 1376672025}
   - component: {fileID: 1376672024}
   - component: {fileID: 1376672027}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -3773,76 +3766,6 @@ MonoBehaviour:
   minFalloff: 1
   max: 2.2
   maxFalloff: 1
---- !u!1 &1774548405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1774548406}
-  - component: {fileID: 1774548408}
-  - component: {fileID: 1774548407}
-  m_Layer: 0
-  m_Name: PlayerController
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1774548406
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774548405}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1853930774}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1774548407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774548405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f71dcae1c2910a94c9ece399866aeda1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Vocals
---- !u!143 &1774548408
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774548405}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1791453949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4352,9 +4275,11 @@ GameObject:
   - component: {fileID: 1853930776}
   - component: {fileID: 1853930775}
   - component: {fileID: 1853930778}
+  - component: {fileID: 1853930780}
+  - component: {fileID: 1853930779}
   m_Layer: 0
   m_Name: XR Origin (VR)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4399,12 +4324,11 @@ Transform:
   m_GameObject: {fileID: 1853930771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.43, z: 0}
+  m_LocalPosition: {x: 0, y: 2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1111447945}
-  - {fileID: 1774548406}
   - {fileID: 772338147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4484,6 +4408,37 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1853930779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853930771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71dcae1c2910a94c9ece399866aeda1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vocals
+--- !u!114 &1853930780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853930771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5146eaf9b4301f4792e3e9887572b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundSnapXR
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  rayStartHeight: 0.8
+  maxSnapDistance: 0.8
+  snapSpeed: 1
+  groundOffset: 0.02
 --- !u!1001 &1890638114
 PrefabInstance:
   m_ObjectHideFlags: 0

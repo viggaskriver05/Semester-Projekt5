@@ -9,27 +9,46 @@ public class SubUI : MonoBehaviour
 
     public static SubUI instance;
 
+    private Coroutine clearCoroutine;
+
     private void Awake()
     {
-        instance = this; 
+        instance = this;
         ClearSubtitle();
     }
 
-    public void SetSubtitle(string subtitle, float delay)
+    public void SetSubtitle(string subtitle, float delay = 0f)
     {
-        subtitleText.text = subtitle;
+        if (clearCoroutine != null)
+        {
+            StopCoroutine(clearCoroutine);
+            clearCoroutine = null;
+        }
 
-        StartCoroutine(ClearAfterSeconds(delay));
+     subtitleText.text = subtitle;
+
+        if (delay > 0f)
+        {
+            clearCoroutine = StartCoroutine(ClearAfterSeconds(delay));
+        }
     }
 
     public void ClearSubtitle()
     {
+        if (clearCoroutine != null)
+        {
+            StopCoroutine(clearCoroutine);
+            clearCoroutine = null;
+        }
+
         subtitleText.text = "";
     }
 
-    private IEnumerator ClearAfterSeconds (float delay)
+    private IEnumerator ClearAfterSeconds(float delay)
     {
-        yield return new WaitForSeconds (delay);
+        yield return new WaitForSeconds(delay);
+
+        clearCoroutine = null;
         ClearSubtitle();
     }
 }
