@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30dd8a5baec2b84c9d0b22583a13093, type: 3}
+  m_Name: Line34
+  m_EditorClassIdentifier: Assembly-CSharp::AudioObject
+  clip: {fileID: 8300000, guid: d4813c09d92bb0a45ae52c6f999d0cbc, type: 3}
+  subtitle: He glanced down, noting that he himself wore a silver garment, and that
+    his feet were bare; with the glance he felt a feathery breeze on his body and
+    a sense of mossy earth on his feet.

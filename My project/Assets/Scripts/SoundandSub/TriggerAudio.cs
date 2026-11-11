@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,7 +7,6 @@ public class TriggerAudio : MonoBehaviour
 {
     public AudioObject clipToPlay;
 
-    // Delay before the first audio starts
     [Min(0f)]
     public float initialDelay = 2f;
 
@@ -14,17 +14,44 @@ public class TriggerAudio : MonoBehaviour
     public class NextAudio
     {
         public AudioObject clip;
-
-        [Min(0f)]
-        public float delay = 1f;
     }
 
     public List<NextAudio> nextClips = new List<NextAudio>();
 
     public bool playOnce = true;
 
+    [Header("VR Controls")]
+    public InputActionReference nextLineAction;
+
     private bool hasPlayed = false;
     private bool isPlaying = false;
+
+    private bool waitingForInput = false;
+    private bool nextRequested = false;
+
+    private void OnEnable()
+    {
+        if (nextLineAction != null && nextLineAction.action != null)
+        {
+            nextLineAction.action.performed += OnNextLinePressed;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (nextLineAction != null && nextLineAction.action != null)
+        {
+            nextLineAction.action.performed -= OnNextLinePressed;
+        }
+    }
+
+    private void OnNextLinePressed(InputAction.CallbackContext context)
+    {
+        if (waitingForInput)
+        {
+            nextRequested = true;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,10 +69,10 @@ public class TriggerAudio : MonoBehaviour
         isPlaying = true;
         hasPlayed = true;
 
-        // Wait before playing the first audio
+        
         yield return new WaitForSeconds(initialDelay);
 
-        // Play the first audio
+        
         if (clipToPlay != null && clipToPlay.clip != null)
         {
             Vocals.instance.Say(clipToPlay);
@@ -53,21 +80,27 @@ public class TriggerAudio : MonoBehaviour
             yield return new WaitForSeconds(clipToPlay.clip.length);
         }
 
-        // Play additional audio clips
+        
         foreach (NextAudio next in nextClips)
         {
             if (next.clip == null || next.clip.clip == null)
                 continue;
 
-            // Wait before playing the next clip
-            yield return new WaitForSeconds(next.delay);
+            
+            nextRequested = false;
+            waitingForInput = true;
 
+            yield return new WaitUntil(() => nextRequested);
+
+            waitingForInput = false;
+
+            
             Vocals.instance.Say(next.clip);
 
-            // Wait until the audio finishes
             yield return new WaitForSeconds(next.clip.clip.length);
         }
 
+        waitingForInput = false;
         isPlaying = false;
     }
 
